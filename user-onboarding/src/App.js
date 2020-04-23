@@ -22,9 +22,21 @@ const initialFormErrors = {
 }
 
 
-const formSchema ={
-
-}
+const formSchema = yup.object().shape( {
+  name: yup
+    .string()
+    .min(3, 'name must have at least 3 characters!')
+    .required('name is required!'),
+  email: yup
+    .string()
+    .email('a VALID email is required')
+    .required('email is required'),
+  password: yup
+    .string()
+    .min(3, 'password must have at least 3 characters!')
+    .required('password is required!'),
+    
+})
 
 function App() {
   const [users, setUsers] = useState([])
@@ -48,8 +60,8 @@ function App() {
     getUsers()
   }, [])
 
-  const postUser = User => {
-    axios.post(url, users)
+  const postUser = user => {
+    axios.post(url, user)
       .then(res => {
         setUsers([...users, res.data])
       })
@@ -57,6 +69,13 @@ function App() {
         debugger
       })
   }
+  useEffect(() => {
+    
+    formSchema.isValid(formValues)
+      .then(valid => {
+        setFormDisabled(!valid)
+      })
+  }, [formValues])
 
   const onSubmit = evt => {
     evt.preventDefault()
@@ -74,6 +93,30 @@ function App() {
   const onInputChange = evt => {
     const name = evt.target.name
     const value = evt.target.value
+    
+    yup
+    .reach(formSchema, name)
+    .validate(value)
+    .then(valid => {
+     
+      setFormErrors({
+        ...formErrors,
+        [name]: '',
+      })
+    })
+    .catch(err => {
+      
+      setFormErrors({
+        ...formErrors,
+        [name]: err.errors[0]
+      })
+    })
+
+  setFormValues({
+    ...formValues,
+    [name]: value,
+  })
+
   }
 
   const onCheckboxChange = evt => {

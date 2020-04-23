@@ -133,16 +133,17 @@ function App() {
         />
         
       </header>
-       {/* {users.map((user) => {
+       {users.map((user) => {
         console.log(users)
         return (
           <div>
             <p>{user.name}</p>
-            <p></p>
+            <p>{user.email}</p>
+            <p>{user.password}</p>
           </div> 
         )
-      })}  */}
-      <div>Users list{JSON.stringify(users)}</div>
+      })} 
+      {/* <div>Users list{JSON.stringify(users)}</div> */}
     </div>
   );
 }

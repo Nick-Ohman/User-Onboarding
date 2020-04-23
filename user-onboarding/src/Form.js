@@ -15,6 +15,11 @@ function Form(props) {
 
   return (
     <div className="form">
+        <div>
+            {errors.name}
+            {errors.email}
+            {errors.password}
+        </div>
        <label>Name:&nbsp;
       <input  
           value={values.name}  

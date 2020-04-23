@@ -16,8 +16,8 @@ function Form(props) {
   return (
     <div className="form">
         <div>
-            {errors.name}
-            {errors.email}
+            {errors.name}<br></br>
+            {errors.email}<br></br>
             {errors.password}
         </div>
        <label>Name:&nbsp;

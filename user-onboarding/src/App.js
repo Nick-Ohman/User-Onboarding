@@ -121,7 +121,8 @@ function App() {
   }
   return (
     <div className="App">
-      <header className="App-header">
+      <h1>User Onboarding</h1>
+      <div>
         <Form 
         values={formValues}
         onInputChange={onInputChange}
@@ -132,18 +133,20 @@ function App() {
         
         />
         
-      </header>
+      </div>
+      <div className='card'>
        {users.map((user) => {
         console.log(users)
         return (
           <div>
-            <p>{user.name}</p>
-            <p>{user.email}</p>
-            <p>{user.password}</p>
+            <p>Name: {user.name}</p>
+            <p>Email: {user.email}</p>
+            <p>Password: {user.password}</p>
           </div> 
         )
       })} 
-      {/* <div>Users list{JSON.stringify(users)}</div> */}
+      </div>
+      
     </div>
   );
 }

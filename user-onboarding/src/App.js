@@ -38,7 +38,9 @@ const formSchema = yup.object().shape( {
     
 })
 
+
 function App() {
+
   const [users, setUsers] = useState([])
   const [formValues, setFormValues] = useState(intialFormValues)
 
@@ -46,19 +48,8 @@ function App() {
 
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   
-  const getUsers = () => {
-    axios.get(url)
-    .then(res => {
-      setUsers(res.data)
-    })
-    .catch(err =>{
-      debugger
-    })
-  }
+  
 
-  useEffect(() => {
-    getUsers()
-  }, [])
 
   const postUser = user => {
     axios.post(url, user)
@@ -66,7 +57,7 @@ function App() {
         setUsers([...users, res.data])
       })
       .catch(err => {
-        debugger
+        // debugger
       })
   }
   useEffect(() => {
@@ -83,7 +74,7 @@ function App() {
     const newUser = {
       name: formValues.name,
       email: formValues.email,
-      password: formValues.password,
+      password: formValues.password
     }
 
     postUser(newUser)
@@ -140,7 +131,18 @@ function App() {
         errors={formErrors}
         
         />
+        
       </header>
+       {/* {users.map((user) => {
+        console.log(users)
+        return (
+          <div>
+            <p>{user.name}</p>
+            <p></p>
+          </div> 
+        )
+      })}  */}
+      <div>Users list{JSON.stringify(users)}</div>
     </div>
   );
 }

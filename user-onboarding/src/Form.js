@@ -18,7 +18,8 @@ function Form(props) {
         <div>
             {errors.name}<br></br>
             {errors.email}<br></br>
-            {errors.password}
+            {errors.password}<br></br>
+            {errors.terms}
         </div>
        <label>Name:&nbsp;
       <input  
@@ -46,7 +47,7 @@ function Form(props) {
         onChange={onCheckboxChange}
         name='terms'
         type="checkbox" /> Terms of Service</label>
-        <button onClick={onSubmit} disabled={disabled} >submit</button>
+        <button type="submit" onClick={onSubmit} disabled={disabled} >submit</button>
     </div>
   );
 }

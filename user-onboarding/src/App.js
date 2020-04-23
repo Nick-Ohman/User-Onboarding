@@ -3,7 +3,7 @@ import Form from './Form'
 
 
 import axios from 'axios';
-import * as yup from 'yup'
+import * as yup from 'yup';
 
 import './App.css';
 
@@ -19,6 +19,7 @@ const initialFormErrors = {
   name: '',
   email: '',
   password: '',
+  terms: false,
 }
 
 
@@ -35,6 +36,10 @@ const formSchema = yup.object().shape( {
     .string()
     .min(3, 'password must have at least 3 characters!')
     .required('password is required!'),
+    terms: yup
+    .boolean()
+    .oneOf([true], 'you must accept')
+    .required('terms is required!')
     
 })
 
